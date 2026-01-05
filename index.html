@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детский сад «Маша и медведь»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+            object-fit: cover;
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff00ff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        }
+
+        .logo-text p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+            background-color: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        /* Основной контент */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, #2a2a2a, #1a1a1a);
+            border-bottom: 2px solid #ff00ff;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+        }
+
+        /* Секция сотрудников */
+        .team-section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #fff;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .employee-card, .owner-card {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #444;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .employee-card:hover, .owner-card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px #ff00ff;
+            transform: translateY(-10px);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .owner-card .avatar {
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        .employee-card h3, .owner-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .employee-card p, .owner-card p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        /* Секция документов */
+        .docs-section {
+            padding: 60px 20px;
+            background: #222;
+            border-top: 2px solid #00ff00;
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .doc-item {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff00ff;
+            text-align: center;
+        }
+
+        .doc-item h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .doc-item p {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Стили для документов - компактный вертикальный прямоугольник */
+        .document-preview {
+            width: 100%;
+            max-width: 300px; /* Компактный размер */
+            height: 400px; /* Вертикальный прямоугольник */
+            margin: 15px auto;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            background: #fff;
+            position: relative;
+        }
+
+        .document-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Затемнение и текст при наведении */
+        .document-preview:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .document-preview:hover::after {
+            content: 'Нажмите для просмотра';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1rem;
+            z-index: 2;
+            text-shadow: 0 0 5px #000;
+        }
+
+        .consent-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .consent-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #00ff00;
+            object-fit: cover;
+        }
+
+        /* Секция контактов */
+        .contact-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        .contact-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+
+        .contact-item h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            color: #00ff00;
+            font-weight: 700;
+            text-decoration: none;
+            display: block;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .phone-number:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .owner-details {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border-radius: 15px;
+            border: 2px solid #ff00ff;
+            text-align: center;
+        }
+
+        .owner-details h4 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .owner-details p {
+            color: #ccc;
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        /* Футер */
+        footer {
+            padding: 40px 20px;
+            background: #111;
+            text-align: center;
+            border-top: 2px solid #ff00ff;
+            margin-top: 60px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .document-preview {
+                max-width: 250px;
+                height: 350px;
+            }
+
+            .phone-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="masha1.jpg" alt="Логотип Маша и медведь" class="logo-img">
+                <div class="logo-text">
+                    <h1>Маша и медведь</h1>
+                    <p>Детский сад нового поколения</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#team">Сотрудники</a></li>
+                    <li><a href="#docs">Документы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h2>Место, где растут счастливые дети</h2>
+            <p>Соответствуем всем требованиям ФЗ «Об образовании», ФЗ «О персональных данных» и СанПиН.</p>
+        </div>
+    </section>
+
+    <!-- Секция сотрудников -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            <div class="team-grid">
+                <!-- Сотрудник 1 -->
+                <div class="employee-card">
+                    <img src="avatar1.jpg" alt="Воспитатель" class="avatar">
+                    <h3>Иванова Анна</h3>
+                    <p>Воспитатель высшей категории</p>
+                    <p>Стаж 10 лет</p>
+                </div>
+                <!-- Сотрудник 2 -->
+                <div class="employee-card">
+                    <img src="avatar2.jpg" alt="Логопед" class="avatar">
+                    <h3>Петрова Елена</h3>
+                    <p>Логопед-дефектолог</p>
+                    <p>Стаж 8 лет</p>
+                </div>
+                <!-- Сотрудник 3 -->
+                <div class="employee-card">
+                    <img src="avatar3.jpg" alt="Музыкальный руководитель" class="avatar">
+                    <h3>Сидорова Ольга</h3>
+                    <p>Музыкальный руководитель</p>
+                    <p>Стаж 12 лет</p>
+                </div>
+                <!-- Сотрудник 4 -->
+                <div class="employee-card">
+                    <img src="avatar4.jpg" alt="Инструктор физкультуры" class="avatar">
+                    <h3>Кузнецов Дмитрий</h3>
+                    <p>Инструктор по физкультуре</p>
+                    <p>Стаж 7 лет</p>
+                </div>
+                <!-- Сотрудник 5 -->
+                <div class="employee-card">
+                    <img src="avatar5.jpg" alt="Психолог" class="avatar">
+                    <h3>Смирнова Татьяна</h3>
+                    <p>Психолог</p>
+                    <p>Стаж 9 лет</p>
+                </div>
+            </div>
+            <!-- Владелец -->
+            <div class="owner-card" style="max-width: 600px; margin: 60px auto 0;">
+                <img src="avatar6.jpg" alt="Владелец" class="avatar">
+                <h3>Сергей Николаев</h3>
+                <p>Учредитель и руководитель</p>
+                <p>Опыт работы с детьми более 15 лет</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция документов -->
+    <section id="docs" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Документы и согласия</h2>
+            <div class="docs-grid">
+                <div class="doc-item">
+                    <h4>Лицензия на образовательную деятельность</h4>
+                    <p>№ Л035-012345678 от 01.01.2023</p>
+                    
+                    <!-- Компактный документ -->
+                    <div class="document-preview">
+                        <img src="dokyment1.jpg" alt="Лицензия на образовательную деятельность">
+                    </div>
+                </div>
+                
+                <div class="doc-item">
+                    <h4>Политика конфиденциальности</h4>
+                    <p>Согласно ФЗ №152-ФЗ</p>
+                    
+                    <!-- Компактный документ -->
+                    <div class="document-preview">
+                        <img src="dokyment2.jpg" alt="Политика конфиденциальности">
+                    </div>
+                </div>
+                
+                <div class="doc-item">
+                    <h4>Согласие на обработку персональных данных</h4>
+                    <p>Подписывается при поступлении ребёнка</p>
+                    <!-- Блок подтверждения с аватаркой -->
+                    <div class="consent-box">
+                        <img src="avatar6.jpg" alt="Подпись владельца" class="consent-avatar">
+                        <div>
+                            <p><strong>Подтверждаю:</strong> Сергей Николаев</p>
+                            <p>Владелец детского сада «Маша и медведь»</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция контактов -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Наш телефон</h3>
+                    <a href="tel:+79999999999" class="phone-number">+7 (999) 999-99-99</a>
+                    <p>Пн-Пт: 8:00-18:00, Сб: 9:00-15:00</p>
+                </div>
+                
+                <div class="owner-details">
+                    <h4>Владелец детского сада</h4>
+                    <p><strong>Сергей Николаев</strong></p>
+                    <p>Дата рождения: 18.12.1979</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#docs">Политика конфиденциальности</a>
+                <a href="#contact">Контакты</a>
+            </div>
+            <p class="copyright">© 2026 Детский сад «Маша и медведь». Все права защищены. Соответствует ФЗ №152, ФЗ №273, СанПиН 2.4.1.3049-13.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Добавляем функционал для открытия документов в полном размере
+        document.querySelectorAll('.document-preview').forEach(preview => {
+            preview.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                const imgTitle = this.querySelector('img').alt;
+                
+                // Создаем модальное окно
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                modal.style.zIndex = '1000';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.flexDirection = 'column';
+                
+                // Добавляем изображение
+                const fullImg = document.createElement('img');
+                fullImg.src = imgSrc;
+                fullImg.alt = imgTitle;
+                fullImg.style.maxWidth = '90%';
+                fullImg.style.maxHeight = '90%';
+                fullImg.style.objectFit = 'contain';
+                fullImg.style.border = '2px solid #00ff00';
+                fullImg.style.borderRadius = '5px';
+                
+                // Добавляем заголовок
+                const title = document.createElement('h3');
+                title.textContent = imgTitle;
+                title.style.color = '#00ff00';
+                title.style.marginTop = '20px';
+                title.style.textAlign = 'center';
+                
+                // Кнопка закрытия
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = 'ЗАКРЫТЬ';
+                closeBtn.style.marginTop = '20px';
+                closeBtn.style.padding = '10px 30px';
+                closeBtn.style.background = '#ff00ff';
+                closeBtn.style.color = '#000';
+                closeBtn.style.border = 'none';
+                closeBtn.style.borderRadius = '5px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.fontWeight = 'bold';
+                
+                // Закрытие по клику
+                closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+                
+                modal.appendChild(fullImg);
+                modal.appendChild(title);
+                modal.appendChild(closeBtn);
+                document.body.appendChild(modal);
+            });
+        });
+    </script>
+</body>
+</html>
